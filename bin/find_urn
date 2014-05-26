@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import os, sys
+parent_folder = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.append(os.path.join(parent_folder, 'nb_urn_client'))
+import nb_urn_client
+from optparse import OptionParser
+
+default_config = os.path.join(parent_folder, 'config', 'config.yml')
+
+parser = OptionParser()
+parser.add_option("-u", "--urn", dest="urn", help="The URN to search for")
+parser.add_option("-c", "--config", dest="config", help="A YAML config file")
+(options, args) = parser.parse_args()
+
+c = nb_urn_client.NbUrnClient(
+    config_file=options.config if options.config else default_config
+)
+
+print c.find_urn(options.urn)
+
+
+
