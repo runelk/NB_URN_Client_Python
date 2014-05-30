@@ -5,7 +5,6 @@ from suds.wsse import *
 import yaml
 
 
-# "No SSO token. Try connect(username, password) or supply the constructor"
 class SsoTokenError(Exception):
     pass
 
@@ -73,7 +72,6 @@ class NbUrnClient(object):
         other registered information regarding the URN.
 
         """
-        # return json.dumps(self.client.service.findURN(urn).__dict__)
         return self.client.service.findURN(urn)
 
     def find_urns_for_url(self, url):
@@ -92,11 +90,10 @@ class NbUrnClient(object):
         The returned URN is not stored in the ID service.
 
         """
-        raise NotImplementedError()
-        # if self.sso_token:
-        #     pass
-        # else:
-        #     raise SsoTokenError("No SSO token available. You need to login first.")
+        if self.sso_token:
+            return self.client.service.getNextURN(self.sso_token, series_code)
+        else:
+            raise SsoTokenError("No SSO token available. You need to login first.")
 
     def login(self, username=None, password=None):
         """Used to log in to the ID-service.
@@ -149,11 +146,10 @@ class NbUrnClient(object):
         old_url -- The old URL to be replaced
         new_url -- The new URL to replace the old URL with 
         """
-        raise NotImplementedError()
-        # if self.sso_token:
-        #     pass
-        # else:
-        #     raise SsoTokenError("No SSO token available. You need to login first.")
+        if self.sso_token:
+            return self.client.service.replaceURL(self.sso_token, urn, old_url, new_url)
+        else:
+            raise SsoTokenError("No SSO token available. You need to login first.")
 
     def reserve_next_urn(self, series_code):
         """ Create a new URN under the specified series/prefix and reserve it for future use.
@@ -167,11 +163,10 @@ class NbUrnClient(object):
 
         The created URN is stored in the ID service, but is not attached to any locations.
         """
-        raise NotImplementedError()
-        # if self.sso_token:
-        #     pass
-        # else:
-        #     raise SsoTokenError("No SSO token available. You need to login first.")
+        if self.sso_token:
+            return self.client.service.reserveNextURN(self.sso_token, series_code)
+        else:
+            raise SsoTokenError("No SSO token available. You need to login first.")
 
     def reserve_urn(self, urn):
         """ Reserve a URN for future use, without assigning any targets.
@@ -182,12 +177,10 @@ class NbUrnClient(object):
         The URN is stored in the ID service without any associated targets.
         This is only allowed for URNs belonging to a series without serial numbers.
         """
-
-        raise NotImplementedError()
-        # if self.sso_token:
-        #     pass
-        # else:
-        #     raise SsoTokenError("No SSO token available. You need to login first.")
+        if self.sso_token:
+            return self.client.service.reserveURN(self.sso_token, urn)
+        else:
+            raise SsoTokenError("No SSO token available. You need to login first.")
 
     def set_default_url(self, urn, url):
         """ Set a default URL for a URN.
@@ -198,11 +191,10 @@ class NbUrnClient(object):
 
         The specified URL must be one that is already registered for the URN.
         """
-        raise NotImplementedError()
-        # if self.sso_token:
-        #     pass
-        # else:
-        #     raise SsoTokenError("No SSO token available. You need to login first.")
+        if self.sso_token:
+            return self.client.service.setDefaultURL(self.sso_token, urn, url)
+        else:
+            raise SsoTokenError("No SSO token available. You need to login first.")
 
     def get_all_urn_series(self):
         """ Retrieve all series available for the current session. 
