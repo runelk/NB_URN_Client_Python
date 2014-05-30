@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+import os, sys, time
+parent_folder = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.append(os.path.join(parent_folder, 'nb_urn_client'))
+import nb_urn_client
+from optparse import OptionParser
+default_config = os.path.join(parent_folder, 'config', 'config.yml')
+
+parser = OptionParser()
+parser.add_option("--series-code", dest="series_code", help="The URN to add")
+parser.add_option("--url", dest="url", help="The URL to set for the URN")
+parser.add_option("--username", dest="username", help="Username (if not provided by the config file)")
+parser.add_option("--password", dest="password", help="Password (if not provided by the config file)")
+parser.add_option("-c", "--config", dest="config", help="A YAML config file")
+(options, args) = parser.parse_args()
+
+c = nb_urn_client.NbUrnClient(
+    username=options.username if options.username else None,
+    password=options.password if options.password else None,
+    config_file=options.config if options.config else default_config
+)
+
+c.login()
+print c.create_urn(options.series_code, options.url)
+c.logout()
