@@ -9,20 +9,23 @@ default_config = os.path.join(parent_folder, 'config', 'config.yml')
 
 parser = OptionParser()
 parser.add_option("--urn", dest="urn", help="The URN on which to replace a URL")
-parser.add_option("--url-old", dest="url", help="The old URL to replace with a new URL")
-parser.add_option("--url-new", dest="url", help="The new URL")
+parser.add_option("--url-old", dest="url_old", help="The old URL to replace with a new URL")
+parser.add_option("--url-new", dest="url_new", help="The new URL")
 parser.add_option("--username", dest="username", help="Username (if not provided by the config file)")
 parser.add_option("--password", dest="password", help="Password (if not provided by the config file)")
 parser.add_option("-c", "--config", dest="config", help="A YAML config file")
 (options, args) = parser.parse_args()
 
-c = nb_urn_client.NbUrnClient(
-    username=options.username if options.username else None,
-    password=options.password if options.password else None,
-    config_file=options.config if options.config else default_config
-)
+if options.urn and options.url_old and options.url_new:
+    c = nb_urn_client.NbUrnClient(
+        username=options.username if options.username else None,
+        password=options.password if options.password else None,
+        config_file=options.config if options.config else default_config
+    )
 
-print c.replace_url(options.urn, options.url_old, options.url_new)
+    print c.replace_url(options.urn, options.url_old, options.url_new)
+else:
+    sys.stderr.write("Usage: replace_url --urn URN --url-old URL --url-new URL\n")
 
 
 

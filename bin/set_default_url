@@ -15,6 +15,7 @@ parser.add_option("--password", dest="password", help="Password (if not provided
 parser.add_option("-c", "--config", dest="config", help="A YAML config file")
 (options, args) = parser.parse_args()
 
+if options.urn and options.url:
 c = nb_urn_client.NbUrnClient(
     username=options.username if options.username else None,
     password=options.password if options.password else None,
@@ -22,6 +23,7 @@ c = nb_urn_client.NbUrnClient(
 )
 
 print c.set_default_url(options.urn, options.url)
-
+else:
+    sys.stderr.write("Usage: set_default_uri --urn URN --url URL\n")
 
 
