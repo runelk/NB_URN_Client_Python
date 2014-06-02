@@ -8,13 +8,13 @@ from optparse import OptionParser
 default_config = os.path.join(parent_folder, 'config', 'config.yml')
 
 parser = OptionParser()
-parser.add_option("--series-code", dest="series_code", help="The series code under which to reserve a URN")
+parser.add_option("--urn", dest="urn", help="the URN to reserve")
 parser.add_option("--username", dest="username", help="Username (if not provided by the config file)")
 parser.add_option("--password", dest="password", help="Password (if not provided by the config file)")
 parser.add_option("-c", "--config", dest="config", help="A YAML config file")
 (options, args) = parser.parse_args()
 
-if options.series_code:
+if options.urn:
     c = nb_urn_client.NbUrnClient(
         username=options.username if options.username else None,
         password=options.password if options.password else None,
@@ -23,6 +23,6 @@ if options.series_code:
 
     print c.reserve_urn(options.urn)
 else:
-    sys.stderr.write("Usage: reserve_urn --series-code CODE\n")
+    sys.stderr.write("Usage: reserve_urn --urn URN\n")
 
 

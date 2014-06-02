@@ -26,6 +26,6 @@ if options.urn and options.url:
     print c.register_urn(options.urn, options.url)
     c.logout()
 else:
-    sys.stderr.write("Usage: register_url --urn URN --url URL\n")
+    sys.stderr.write("Usage: register_urn --urn URN --url URL\n")
 
 
