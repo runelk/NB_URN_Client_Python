@@ -21,7 +21,10 @@ if options.urn and options.url:
         password=options.password if options.password else None,
         config_file=options.config if options.config else default_config
     )
+
+    c.login()
     print c.set_default_url(options.urn, options.url)
+    c.logout()
 else:
     sys.stderr.write("Usage: set_default_url --urn URN --url URL\n")
 

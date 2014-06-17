@@ -19,7 +19,9 @@ if options.series_code:
         config_file=options.config if options.config else default_config
     )
 
+    c.login()
     print c.reserve_next_urn(options.series_code)
+    c.logout()
 else:
     sys.stderr.write("Usage: reserve_next_urn --series-code CODE\n")
 

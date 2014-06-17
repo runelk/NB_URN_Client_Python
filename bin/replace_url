@@ -23,7 +23,9 @@ if options.urn and options.url_old and options.url_new:
         config_file=options.config if options.config else default_config
     )
 
+    c.login()
     print c.replace_url(options.urn, options.url_old, options.url_new)
+    c.logout()
 else:
     sys.stderr.write("Usage: replace_url --urn URN --old-url URL --new-url URL\n")
 

@@ -21,7 +21,9 @@ if options.urn:
         config_file=options.config if options.config else default_config
     )
 
+    c.login()
     print c.reserve_urn(options.urn)
+    c.logout()
 else:
     sys.stderr.write("Usage: reserve_urn --urn URN\n")
 
