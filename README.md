@@ -98,7 +98,7 @@ c.set_default_url(new_urn.URN, "http://www.someurl.com/")
 print c.find_urn(new_urn.URN)
 
 # Retrieve all URNs containing some URL and have a look
-print c.find_urns_for_url("http://www.slashdot.org")
+print c.find_urns_for_url("http://www.someurl.org")
 
 # Logout when you're done
 c.logout()
