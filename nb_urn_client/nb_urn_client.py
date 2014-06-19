@@ -109,8 +109,6 @@ class NbUrnClient(object):
         """
         u = username if username else self.config['username']
         p = password if password else self.config['password']
-        print "U: %s" % u
-        print "P: %s" % p
         self.sso_token = self.client.service.login(u, p)
         return self.sso_token
 
