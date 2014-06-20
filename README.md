@@ -10,8 +10,7 @@ For more information (in Norwegian) about the service:
 Configuration
 -------------
 
-The **config** directory contains an example of the YAML config file used by the client.
-Replace the dummy entries with the information you have received from the National Library.
+The **config** directory contains an example of the YAML config file used by the client (**config.yml.example**). Copy this to e.g. **config.yml** and replace the dummy entries with the information you have received from the National Library.
 
 Command Line Tools
 ------------------
