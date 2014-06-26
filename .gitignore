@@ -1,0 +1,7 @@
+venv
+.DS_Store
+MANIFEST
+dist
+.idea
+build
+NbUrnClient.egg-info
