@@ -7,6 +7,14 @@ For more information (in Norwegian) about the service:
 * Regarding URN: http://www.nb.no/idtjeneste/about_urn.jsf
 * Regarding the SOAP API: http://www.nb.no/idtjeneste/about_urn_webservice.jsf
 
+Installation
+------------
+
+The library is available as [NbUrnClient](https://pypi.python.org/pypi/NbUrnClient) on PyPI.
+To install it to your desired python environment: `pip install NbUrnClient`
+
+The command line utilities are not included. As long as you have the NbUrnClient library installed, all you need to do is to download the **bin** and **config** directories and follow the instructions under **Configuration**.
+
 Configuration
 -------------
 
@@ -107,19 +115,5 @@ c.logout()
 Dependencies
 ------------
 
-* [suds](https://fedorahosted.org/suds/)
-* [yaml](https://pypi.python.org/pypi/PyYAML)
-
-Recommendation: Create a [virtualenv](http://virtualenv.readthedocs.org/) and install these dependencies using [pip](http://pip.readthedocs.org/).
-
-Testing
--------
-
-The **test** folder contains a unittest suite for testing against a mockservice
-(currently not included in the repository)
-Go to the test folder and run [nosetests](https://nose.readthedocs.org/en/latest/) without log capture
-(nose barfs on something in the suds library):
-
-```
-nosetests --nologcapture
-```
+* [suds 0.4](https://fedorahosted.org/suds/)
+* [PyYAML](https://pypi.python.org/pypi/PyYAML)
