@@ -13,6 +13,6 @@ setup(
     long_description=open('README.rst').read(),
     install_requires=[
         'PyYAML',
-        'suds==0.4'
+        'suds==1.0.0'
     ]
 )
